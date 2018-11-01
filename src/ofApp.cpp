@@ -48,7 +48,11 @@ void ofApp::react() {
     string message = this->_udpMessage;
     if (message != "") {
         int i = ofToInt(message);
-        cout << i << endl;
+        if (i <= this->_sounds.size()) {
+            if (_sounds[i]->isLoaded()) {
+                _sounds[i]->play();
+            }
+        }
     }
 }
 
