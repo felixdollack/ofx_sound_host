@@ -49,8 +49,13 @@ void ofApp::react() {
     if (message != "") {
         int i = ofToInt(message);
         if (i <= this->_sounds.size()) {
-            if (_sounds[i]->isLoaded()) {
-                _sounds[i]->play();
+            if (this->_sounds[i]->isLoaded() == true) {
+                this->_sounds[i]->play();
+            }
+        }
+        if (i == 9999) {
+            if (this->_beep.isLoaded() == true) {
+                this->_beep.play();
             }
         }
     }
