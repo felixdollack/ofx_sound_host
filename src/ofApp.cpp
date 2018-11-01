@@ -3,11 +3,12 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     loadSettingsAndWriteDefaultIfNeeded();
+    connectToHost();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    react();
 }
 
 //--------------------------------------------------------------
@@ -33,6 +34,22 @@ void ofApp::windowResized(int w, int h){
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
 
+}
+
+void ofApp::connectToHost() {
+    this->_udpConnection.Create();
+    this->_udpConnection.Bind(this->_port);
+    this->_udpConnection.SetNonBlocking(true);
+}
+void ofApp::react() {
+    memset(this->_udpMessage, 0, _maxMessageLen);
+    this->_udpConnection.Receive(this->_udpMessage, _maxMessageLen);
+
+    string message = this->_udpMessage;
+    if (message != "") {
+        int i = ofToInt(message);
+        cout << i << endl;
+    }
 }
 
 void ofApp::loadSettingsAndWriteDefaultIfNeeded() {

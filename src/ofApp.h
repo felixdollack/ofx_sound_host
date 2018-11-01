@@ -1,7 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxNetwork.h"
 #include "ofxXmlSettings.h"
+
+#define _maxMessageLen 128
 
 class ofApp : public ofBaseApp{
 
@@ -20,4 +23,11 @@ class ofApp : public ofBaseApp{
     const string _settings_filename = "settings.xml";
     void loadSettingsAndWriteDefaultIfNeeded();
     void writeDefaultSettings();
+
+    // network
+    char _udpMessage[_maxMessageLen];
+    ofxUDPManager _udpConnection;
+    int _port = 12345;
+    void connectToHost();
+    void react();
 };
