@@ -18,6 +18,10 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void gotMessage(ofMessage msg);
 
+    // sound files
+    ofSoundPlayer _beep;
+    vector<ofSoundPlayer*> _sounds;
+
     // settings
     ofxXmlSettings *_settings;
     const string _settings_filename = "settings.xml";
